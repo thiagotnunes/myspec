@@ -1,11 +1,17 @@
 def describe(description, &block)
-  block.call
+  ExampleGroup.new(&block)
 end
 
-def it(description, &block)
-  block.call
-rescue Exception
-  raise AssertionError
+class ExampleGroup
+  def initialize(&block)
+    instance_eval(&block)
+  end
+
+  def it(description, &block)
+    block.call
+  rescue Exception
+    raise AssertionError
+  end
 end
 
 class Object
@@ -22,7 +28,6 @@ class DelayedAssertion
   def ==(other)
     raise AssertionError unless @subject == other
   end
-
 end
 
 class AssertionError < Exception
