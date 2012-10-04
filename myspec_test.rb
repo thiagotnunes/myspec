@@ -5,6 +5,7 @@ class TestMySpec < Test::Unit::TestCase
   def test_it_should_pass
     describe "This is a passing test" do
       it "should pass" do
+        2.should == 2
       end
     end
   end
@@ -13,7 +14,7 @@ class TestMySpec < Test::Unit::TestCase
     assert_raise AssertionError do
       describe "This is a failing test" do
         it "should fail" do
-          raise IndexError
+          3.should == 2
         end
       end
     end
