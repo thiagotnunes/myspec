@@ -19,4 +19,22 @@ class TestMySpec < Test::Unit::TestCase
       end
     end
   end
+
+  def test_it_should_pass_be_true
+    describe "This is a be true test" do
+      it "should pass" do
+        true.should be_true
+      end
+    end
+  end
+
+  def test_it_should_fail_be_true
+    assert_raise AssertionError do
+      describe "This is a be true test" do
+        it "should fail" do
+          false.should be_true
+        end
+      end
+    end
+  end
 end
